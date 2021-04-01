@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    var lat = getParameterByName('lat');
+    var lon = getParameterByName('lon');
+
+
+    if (lon && lon) {
+        console.log('yandexnavi://show_point_on_map?lat=' + lat + '&lon=' + lon);
+        window.location.href = 'yandexnavi://show_point_on_map?lat=' + lat + '&lon=' + lon;
+    }
+
+
+</script>
+</body>
+</html>
